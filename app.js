@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-require('dotenv').config();
+require('dotenv/config');
+// docs use - (see line below) ????
+// require('dotenv').config()
 
 const PORT = 5000;
-const connString = process.env.DB_CONNECTION;
 
 const postRoute = require('./routes/posts');
 
@@ -14,7 +15,8 @@ app.use(express.json());
 app.use('/posts', postRoute);
 
 // connect to db
-mongoose.connect(connString,
+mongoose.connect(
+    process.env.DB_CONNECTION,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
