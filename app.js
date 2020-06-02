@@ -8,11 +8,13 @@ require('dotenv/config');
 const PORT = 5000;
 
 const postRoute = require('./routes/posts');
+const personRoute = require('./routes/persons');
 
 app.use(express.json());
 
 // register post routes
 app.use('/posts', postRoute);
+app.use('/persons', personRoute);
 
 // connect to db
 mongoose.connect(
