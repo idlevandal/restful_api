@@ -15,15 +15,26 @@ router.get('/country', (req, res) => {
             $group: { _id: '$country', numPeople: {$sum: 1}}
         },
         {
+            $group: {
+                _id: null,
+                peopleArr: {$push: {country: '$_id', numPeople: '$numPeople'}},
+                totalPeople: {$sum: '$numPeople'}
+            }
+        },
+        {
+            $unwind: '$peopleArr'
+        },
+        {
             $project: {
-                numPeople: 1,
-                country: '$_id.country' 
+                _id: 0,
+                personPerCountry: '$peopleArr.numPeople',
+                country: '$peopleArr.country',
+                percentage: {$multiply: [{$divide: ['$peopleArr.numPeople', '$totalPeople']}, 100]}
             }
         }
       ]).
-      then(function (x) {
-        console.log(x);
-        res.json(x);
+      then(function (result) {
+        res.json(result);
       });
 });
 
@@ -44,5 +55,27 @@ router.post('/', async (req, res) => {
         res.json({msg: 'Error saving data', error: err});
     }
 });
+
+router.patch('/:id', async (req, res) => {
+    const entries = Object.keys(req.body);
+    const updates = {};
+    for (let i = 0; i < entries.length; i++) {
+        updates[entries[i]] = Object.values(req.body)[i]
+    }
+
+    try {
+        const updated = await Person.findOneAndUpdate(
+            {_id: req.params.id},
+            {$set: updates},
+            {
+                new: true,
+                useFindAndModify: false
+            }
+        );
+        res.json(updated);
+    } catch (err) {
+        res.json({msg: 'Error updating person', error: err})
+    }
+})
 
 module.exports = router;
