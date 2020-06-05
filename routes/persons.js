@@ -38,6 +38,15 @@ router.get('/country', (req, res) => {
       });
 });
 
+router.get('/:personId', async (req, res) => {
+    try {
+        const user = await Person.findById(req.params.personId);
+        res.json(user);
+    } catch (err) {
+        res.json({msg: 'Error retrieving user'});
+    }
+});
+
 router.post('/', async (req, res) => {
     const person = new Person({
         name: req.body.name,
@@ -74,7 +83,7 @@ router.patch('/:id', async (req, res) => {
         );
         res.json(updated);
     } catch (err) {
-        res.json({msg: 'Error updating person', error: err})
+        res.json({msg: '💥 Error updating person', error: err})
     }
 })
 

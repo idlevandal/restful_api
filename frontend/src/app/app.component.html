@@ -1,0 +1,13 @@
+<div class="container mt-4">
+  <h2>People</h2>
+
+  <div *ngIf='isLoading' class="d-flex justify-content-center mt-5">
+    <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngFor='let person of people' class="alert alert-secondary pointer" (click)='selectPerson(person)'>
+    {{person.name}}: {{person.age}} - Country: {{person.country}}
+  </div>
+</div>
