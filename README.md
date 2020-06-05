@@ -1,1 +1,1 @@
-# Basic express, mongoose api setup
+# Basic express, mongoose api setup with Angular frontend
