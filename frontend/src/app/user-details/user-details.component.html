@@ -1,6 +1,6 @@
 <div class="container mt-4">
-    <button class="btn btn-outline-danger float-right" (click)='deleteUser()'>
-        Delete User
+    <button (click)='backToUsers()' class="btn btn-outline-primary float-right">
+        Back to Users
     </button>
     <h2>User Details</h2>
     <div *ngIf='person' class="card m-5" style="width: 18rem;">
@@ -10,7 +10,7 @@
           <p class="card-text">Age: {{person.age}}</p>
           <p class="card-text">Country: {{person.country}}</p>
           <p class="card-text">Scores: {{person.scores}}</p>
-          <button (click)='backToUsers()' class="btn btn-primary">Back to Users</button>
+          <button (click)='deleteUser()' class="btn btn-danger">Delete User</button>
         </div>
       </div>
 </div>
