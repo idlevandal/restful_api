@@ -19,18 +19,6 @@ export class AppComponent {
   constructor(private personService: PersonService) {}
 
   ngOnInit(): void {
-    // this.isLoading = true;
-    // this.personSub = this.personService.getPeople()
-    //   .pipe(finalize(() => {
-    //     this.isLoading = false;
-    //     this.personSub.unsubscribe()
-    //   }))
-    //   .subscribe(el => {
-    //     this.people = el;
-    //   });
-
-    // this.personService.getCountryStats()
-    //   .subscribe(el => this.countryStats = el);
     this.isLoading = true;
 
     forkJoin(
