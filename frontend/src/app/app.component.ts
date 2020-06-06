@@ -11,6 +11,7 @@ import { finalize } from 'rxjs/operators';
 })
 export class AppComponent {
   public people: IPerson[] = [];
+  public countryStats: any = [];
   public isLoading: boolean = false;
 
   private personSub: Subscription;
@@ -27,6 +28,9 @@ export class AppComponent {
       .subscribe(el => {
         this.people = el;
       });
+
+    this.personService.getCountryStats()
+      .subscribe(el => this.countryStats = el);
   }
 
   public selectPerson(person: IPerson): void {

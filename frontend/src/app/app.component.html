@@ -7,6 +7,14 @@
     </div>
   </div>
 
+  <div class="mb-3">
+    <ng-container *ngFor='let stat of countryStats'>
+      <p>
+        {{stat.country}} - <span class="badge badge-pill badge-primary">{{stat.percentage | number: '1.1-1'}}%</span>
+      </p>
+    </ng-container>
+  </div>
+
   <div *ngFor='let person of people' class="alert alert-secondary pointer" (click)='selectPerson(person)'>
     {{person.name}}: {{person.age}} - Country: {{person.country}}
   </div>

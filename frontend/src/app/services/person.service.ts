@@ -19,6 +19,14 @@ export class PersonService {
         catchError(this.errorHandler)
       )
   }
+
+  public getCountryStats(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/country`)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
   public errorHandler(err: HttpErrorResponse)  {
     return throwError(err.message || 'Server Error')
   }
