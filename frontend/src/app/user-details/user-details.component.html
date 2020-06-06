@@ -3,11 +3,14 @@
         Delete User
     </button>
     <h2>User Details</h2>
-    <ng-container *ngIf='person'>
-        <h3>{{person.name}}</h3>
-        <p>{{person.gender}}</p>
-        <p>{{person.age}}</p>
-        <p>{{person.country}}</p>
-        <p>{{person.scores}}</p>
-    </ng-container>
+    <div *ngIf='person' class="card m-5" style="width: 18rem;">
+        <img src="../../assets/user-icon.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{person.name}}</h5>
+          <p class="card-text">Age: {{person.age}}</p>
+          <p class="card-text">Country: {{person.country}}</p>
+          <p class="card-text">Scores: {{person.scores}}</p>
+          <button (click)='backToUsers()' class="btn btn-primary">Back to Users</button>
+        </div>
+      </div>
 </div>

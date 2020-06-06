@@ -1,6 +1,6 @@
 <div class="container mt-4">
     <a class="btn btn-outline-primary float-right" routerLink='/users'>
-        Users
+        Back to Users
         </a>
     <h2>Add user</h2>
 
@@ -26,9 +26,10 @@
                 <label>Scores</label>
                 <input type="number" class="form-control" formControlName='scores'>
             </div>
+
+            <button class="btn btn-outline-success mt-3" (click)='addUser()'>
+                Add user
+            </button>
         </div>
     </div>
-    <button class="btn btn-outline-success mt-3" (click)='addUser()'>
-        Add user
-    </button>
 </div>

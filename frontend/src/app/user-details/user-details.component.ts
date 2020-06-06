@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonService } from '../services/person.service';
 import { IPerson } from '../interfaces/person.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-details',
@@ -11,16 +12,27 @@ export class UserDetailsComponent implements OnInit {
 
   public person: IPerson;
 
-  constructor(private personService: PersonService) { }
+  constructor(private personService: PersonService, private router: Router) { }
 
   ngOnInit() {
-    this.person = history.state.data['person'];
+    if (history.state.data && history.state.data['person']) {
+      this.person = history.state.data['person'];
+    } else {
+      this.backToUsers();
+    }
   }
 
   public deleteUser(): void {
     if (history.state.data.person) {
       this.personService.deletePerson(this.person._id)
-        .subscribe(el => console.log(el))
+        .subscribe(el => {
+          console.log(el);
+          this.backToUsers();
+        })
     }
+  }
+
+  private backToUsers(): void {
+    this.router.navigate(['/users']);
   }
 }
