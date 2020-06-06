@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 import { IPerson } from '../interfaces/person.interface';
 
 @Injectable({
@@ -16,6 +16,7 @@ export class PersonService {
   public getPeople(): Observable<IPerson[]> {
     return this.http.get<IPerson[]>(this.url)
       .pipe(
+        shareReplay(),
         catchError(this.errorHandler)
       )
   }
@@ -23,6 +24,7 @@ export class PersonService {
   public getCountryStats(): Observable<any[]> {
     return this.http.get<any[]>(`${this.url}/country`)
       .pipe(
+        shareReplay(),
         catchError(this.errorHandler)
       )
   }

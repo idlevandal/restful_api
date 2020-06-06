@@ -1,0 +1,24 @@
+<div class="container mt-4">
+    <a class="btn btn-outline-primary float-right" routerLink='/add-user'>
+        Add User
+      </a>
+    <h2>People</h2>
+
+    <div *ngIf='isLoading' class="d-flex justify-content-center mt-5">
+      <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <ng-container *ngFor='let stat of countryStats'>
+        <p>
+          {{stat.country}} - <span class="badge badge-pill badge-primary">{{stat.percentage | number: '1.1-1'}}%</span>
+        </p>
+      </ng-container>
+    </div>
+  
+    <div *ngFor='let person of people' class="alert alert-secondary pointer" (click)='selectPerson(person)'>
+      {{person.name}}: {{person.age}} - Country: {{person.country}}
+    </div>
+</div>
