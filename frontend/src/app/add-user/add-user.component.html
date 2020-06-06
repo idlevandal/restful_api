@@ -1,6 +1,33 @@
 <div class="container mt-4">
     <a class="btn btn-outline-primary float-right" routerLink='/users'>
         Users
-      </a>
+        </a>
     <h2>Add user</h2>
-  </div>
+
+    <div [formGroup]='userForm' class="my-form">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName='name'>
+        </div>
+        <div class="form-group">
+            <label>Age</label>
+            <input type="text" class="form-control" formControlName='age'>
+        </div>
+        <div class="form-group">
+            <label>Country</label>
+            <input type="text" class="form-control" formControlName='country'>
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="text" class="form-control" formControlName='gender'>
+        </div>
+        <div class="form-group">
+            <label>Scores</label>
+            <input type="number" class="form-control" formControlName='scores'>
+        </div>
+    </div>
+    <button class="btn btn-outline-success mt-3" (click)='addUser()'>
+        Add user
+    </button>
+    <pre>{{userForm.value | json}}</pre>
+</div>

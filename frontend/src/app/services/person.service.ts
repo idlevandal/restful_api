@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, pipe } from 'rxjs';
 import { catchError, shareReplay } from 'rxjs/operators';
 import { IPerson } from '../interfaces/person.interface';
 
@@ -29,7 +29,12 @@ export class PersonService {
       )
   }
 
+  public addPerson(person: IPerson): Observable<IPerson> {
+    return this.http.post<IPerson>(`${this.url}`, person, {})
+      .pipe(catchError(this.errorHandler));
+  }
+
   public errorHandler(err: HttpErrorResponse)  {
-    return throwError(err.message || 'Server Error')
+    return throwError(err.message || 'Server Error');
   }
 }
