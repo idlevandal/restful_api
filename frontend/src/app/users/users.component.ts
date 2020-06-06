@@ -4,7 +4,6 @@ import { IPerson } from '../../app/interfaces/person.interface';
 import { Subscription, forkJoin } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
-import { relative } from 'path';
 
 @Component({
   selector: 'app-users',
