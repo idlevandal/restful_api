@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PersonService } from './services/person.service';
 import { IPerson } from '../app/interfaces/person.interface';
 import { Subscription, forkJoin } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -34,15 +34,15 @@ export class AppComponent {
     this.isLoading = true;
 
     forkJoin(
-      this.personService.getPeople(),
-      this.personService.getCountryStats())
+      this.personService.getPeople()
+        .pipe(tap(data => this.people = data)),
+      this.personService.getCountryStats()
+        .pipe(tap(data => this.countryStats = data)),
+      )
       .pipe(finalize(() => {
             this.isLoading = false;
       }))
-      .subscribe(el => {
-        this.people = el[0];
-        this.countryStats = el[1];
-      });
+      .subscribe();
   }
 
   public selectPerson(person: IPerson): void {
