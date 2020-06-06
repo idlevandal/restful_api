@@ -34,6 +34,11 @@ export class PersonService {
       .pipe(catchError(this.errorHandler));
   }
 
+  public deletePerson(id: string): Observable<IPerson> {
+    return this.http.delete<IPerson>(`${this.url}/${id}`)
+      .pipe(catchError(this.errorHandler));
+  }
+
   public errorHandler(err: HttpErrorResponse)  {
     return throwError(err.message || 'Server Error');
   }

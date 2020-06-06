@@ -3,6 +3,8 @@ import { PersonService } from './../services/person.service';
 import { IPerson } from '../../app/interfaces/person.interface';
 import { Subscription, forkJoin } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
+import { relative } from 'path';
 
 @Component({
   selector: 'app-users',
@@ -17,7 +19,10 @@ export class UsersComponent implements OnInit {
 
   private personSub: Subscription;
 
-  constructor(private personService: PersonService) {}
+  constructor(private personService: PersonService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -35,7 +40,7 @@ export class UsersComponent implements OnInit {
   }
 
   public selectPerson(person: IPerson): void {
-    console.log(person);
+    this.router.navigate(['/user-details'], {state: {data: {person}}, relativeTo: this.route});
   }
 
 }

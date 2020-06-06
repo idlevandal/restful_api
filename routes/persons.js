@@ -85,6 +85,15 @@ router.patch('/:id', async (req, res) => {
     } catch (err) {
         res.json({msg: '💥 Error updating person', error: err})
     }
+});
+
+router.delete('/:userId', async (req, res) => {
+    try {
+        const person = await Person.findByIdAndDelete(req.params.userId);
+        res.json(person);
+    } catch (err) {
+        res.json({msg: err});
+    }
 })
 
 module.exports = router;

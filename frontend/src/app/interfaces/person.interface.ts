@@ -4,6 +4,6 @@ export interface IPerson {
     gender: string;
     country: string;
     scores: Array<number>;
-    id: string;
+    _id: string;
 
 }

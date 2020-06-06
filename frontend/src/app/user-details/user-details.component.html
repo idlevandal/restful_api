@@ -1,0 +1,13 @@
+<div class="container mt-4">
+    <button class="btn btn-outline-danger float-right" (click)='deleteUser()'>
+        Delete User
+    </button>
+    <h2>User Details</h2>
+    <ng-container *ngIf='person'>
+        <h3>{{person.name}}</h3>
+        <p>{{person.gender}}</p>
+        <p>{{person.age}}</p>
+        <p>{{person.country}}</p>
+        <p>{{person.scores}}</p>
+    </ng-container>
+</div>
