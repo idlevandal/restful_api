@@ -32,6 +32,11 @@ export class UserDetailsComponent implements OnInit {
     }
   }
 
+  public getPerson(personId: string): void {
+    this.personService.getPerson(personId)
+      .subscribe(console.log);
+  }
+
   private backToUsers(): void {
     this.router.navigate(['/users']);
   }

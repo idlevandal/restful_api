@@ -5,3 +5,12 @@ exports.getPeople = async (req, res) => {
 
     res.json(persons);
 }
+
+exports.getPerson = async (req, res) => {
+    try {
+        const user = await Person.findById(req.params.personId);
+        res.json(user);
+    } catch (err) {
+        res.json({msg: 'Error retrieving user'});
+    }
+};

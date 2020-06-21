@@ -39,14 +39,7 @@ router.get('/country', (req, res) => {
       });
 });
 
-router.get('/:personId', async (req, res) => {
-    try {
-        const user = await Person.findById(req.params.personId);
-        res.json(user);
-    } catch (err) {
-        res.json({msg: 'Error retrieving user'});
-    }
-});
+router.get('/:personId', personController.getPerson);
 
 router.post('/', async (req, res) => {
     const person = new Person({

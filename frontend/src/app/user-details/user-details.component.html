@@ -4,7 +4,7 @@
     </button>
     <h2>User Details</h2>
     <div *ngIf='person' class="card m-5" style="width: 18rem;">
-        <img src="../../assets/user-icon.jpg" class="card-img-top" alt="...">
+        <img (click)='getPerson(person._id)' src="../../assets/user-icon.jpg" class="card-img-top pointer" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{person.name}}</h5>
           <p class="card-text">Age: {{person.age}}</p>
