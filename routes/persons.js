@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Person = require('../models/Person');
-const getPerson = require('../controllers/personController');
+const personController = require('../controllers/personController');
 
 
-router.get('/', getPerson.getPerson)
+router.get('/', personController.getPeople)
     // const persons = await Person.find().sort({country: 1});
 
     // res.json(persons);
